@@ -103,7 +103,6 @@ var buffer = document.getElementById('buffer').getContext('2d');
 var canvas = document.getElementById('canvas').getContext('2d');
 var fireworks = [];
 var height = 0;
-var pi_divide_180 = Math.PI / 180;
 var width = 0;
 var x = 0;
 var y = 0;
@@ -132,7 +131,8 @@ window.onload = function(e){
     );
 };
 
-window.onmousedown = function(e){
+window.onmousedown =
+  window.ontouchstart = function(e){
     launch();
 };
 
