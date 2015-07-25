@@ -113,7 +113,7 @@ window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
     // ESC: clear.
-    if(key == 27){
+    if(key === 27){
         fireworks.length = 0;
 
     }else{
