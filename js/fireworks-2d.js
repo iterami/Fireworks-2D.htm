@@ -35,7 +35,7 @@ function draw(){
 
 function launch(firework){
     var firework = firework || {};
-    firework['children'] = firework['children'] != null
+    firework['children'] = firework['children'] !== void 0
       ? firework['children']
       : 10;
     firework['color'] = firework['color'] || random_hex();
