@@ -73,6 +73,7 @@ function logic(){
                     });
                 }while(loop_counter--);
             }
+
             fireworks.splice(
               firework,
               1
@@ -127,7 +128,6 @@ window.onkeydown = function(e){
 
 window.onload = function(e){
     resize();
-
     launch();
 
     window.requestAnimationFrame(draw);
