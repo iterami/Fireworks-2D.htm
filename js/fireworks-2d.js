@@ -40,7 +40,7 @@ function launch(firework){
       : 10;
     firework['color'] = firework['color'] || random_hex();
     firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
-    firework['dy'] = firework['dy'] || -4 - Math.random() * 2;
+    firework['dy'] = firework['dy'] || -(height / 200) - Math.random() * 2;
     firework['height'] = firework['height'] || 4;
     firework['timer'] = firework['timer'] || 100 + Math.floor(Math.random() * 200);
     firework['width'] = firework['width'] || 4;
