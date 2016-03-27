@@ -1,5 +1,5 @@
-Fireworks-2D.htm
-----------------
+iterami/Fireworks-2D.htm
+------------------------
 
 CC0 two-dimensional fireworks simulation.
 
