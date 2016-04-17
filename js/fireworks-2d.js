@@ -95,5 +95,3 @@ window.onmousedown =
   window.ontouchstart = function(e){
     launch();
 };
-
-window.onresize = resize;
