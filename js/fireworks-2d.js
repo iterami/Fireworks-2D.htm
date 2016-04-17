@@ -69,9 +69,6 @@ function random_hex(){
       + choices.charAt(Math.floor(Math.random() * 16));
 }
 
-function resize_logic(){
-}
-
 var fireworks = [];
 
 window.onkeydown = function(e){
