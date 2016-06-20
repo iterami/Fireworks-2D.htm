@@ -71,24 +71,24 @@ function random_hex(){
 
 var fireworks = [];
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // ESC: clear.
-    if(key === 27){
-        fireworks.length = 0;
-
-    }else{
-        launch();
-    }
-};
-
 window.onload = function(e){
     init_canvas();
-    launch();
-};
-
-window.onmousedown =
-  window.ontouchstart = function(e){
+    init_input(
+      {
+        27: {
+          'todo': function(){
+              fireworks.length = 0;
+          },
+        },
+        'all': {
+          'todo': launch,
+        },
+      },
+      {
+        'mousedown': {
+          'todo': launch,
+        },
+      }
+    );
     launch();
 };
