@@ -76,6 +76,7 @@ window.onload = function(e){
     init_input(
       {
         27: {
+          'solo': true,
           'todo': function(){
               fireworks.length = 0;
           },
