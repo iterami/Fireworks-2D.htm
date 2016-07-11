@@ -2,8 +2,8 @@
 
 function draw_logic(){
     for(var firework in fireworks){
-        buffer.fillStyle = fireworks[firework]['color'];
-        buffer.fillRect(
+        canvas_buffer.fillStyle = fireworks[firework]['color'];
+        canvas_buffer.fillRect(
           fireworks[firework]['x'],
           fireworks[firework]['y'],
           fireworks[firework]['width'],
@@ -19,12 +19,12 @@ function launch(firework){
       : 10;
     firework['color'] = firework['color'] || random_hex();
     firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
-    firework['dy'] = firework['dy'] || -(height / 200) - Math.random() * 2;
+    firework['dy'] = firework['dy'] || -(canvas_height / 200) - Math.random() * 2;
     firework['height'] = firework['height'] || 4;
     firework['timer'] = firework['timer'] || 100 + Math.floor(Math.random() * 200);
     firework['width'] = firework['width'] || 4;
-    firework['x'] = firework['x'] || x;
-    firework['y'] = firework['y'] || height;
+    firework['x'] = firework['x'] || canvas_x;
+    firework['y'] = firework['y'] || canvas_height;
 
     fireworks.push(firework);
 }
@@ -72,7 +72,7 @@ function random_hex(){
 var fireworks = [];
 
 window.onload = function(e){
-    init_canvas();
+    canvas_init();
     input_init(
       {
         27: {
