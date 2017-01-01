@@ -21,7 +21,9 @@ function launch(firework){
     firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
     firework['dy'] = firework['dy'] || -(canvas_height / 200) - Math.random() * 2;
     firework['height'] = firework['height'] || 4;
-    firework['timer'] = firework['timer'] || random_integer(200) + 100;
+    firework['timer'] = firework['timer'] || random_integer({
+      'max': 200,
+    }) + 100;
     firework['width'] = firework['width'] || 4;
     firework['x'] = firework['x'] || canvas_x;
     firework['y'] = firework['y'] || canvas_height;
@@ -47,7 +49,9 @@ function logic(){
                       'dx': Math.random() * 3 - 1.5,
                       'dy': Math.random() * 3 - 1.5,
                       'x': fireworks[firework]['x'],
-                      'timer': random_integer(99) + 42,
+                      'timer': random_integer({
+                        'max': 99,
+                      }) + 42,
                       'y': fireworks[firework]['y'],
                     });
                 }while(loop_counter--);
