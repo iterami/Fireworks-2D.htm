@@ -69,8 +69,8 @@ var fireworks = [];
 
 window.onload = function(e){
     canvas_init();
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         27: {
           'solo': true,
           'todo': function(){
@@ -81,11 +81,11 @@ window.onload = function(e){
           'todo': launch,
         },
       },
-      {
+      'mousebinds': {
         'mousedown': {
           'todo': launch,
         },
-      }
-    );
+      },
+    });
     launch();
 };
