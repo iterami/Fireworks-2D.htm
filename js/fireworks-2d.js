@@ -17,7 +17,7 @@ function launch(firework){
     firework['children'] = firework['children'] !== void 0
       ? firework['children']
       : 10;
-    firework['color'] = firework['color'] || random_hex();
+    firework['color'] = firework['color'] || '#' + random_hex();
     firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
     firework['dy'] = firework['dy'] || -(canvas_height / 200) - Math.random() * 2;
     firework['height'] = firework['height'] || 4;
