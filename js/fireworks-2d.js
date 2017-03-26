@@ -25,13 +25,17 @@ function launch(firework){
       'max': 200,
     }) + 100;
     firework['width'] = firework['width'] || 4;
-    firework['x'] = firework['x'] || canvas_x;
+    firework['x'] = firework['x'] || input_mouse['x'];
     firework['y'] = firework['y'] || canvas_height;
 
     fireworks.push(firework);
 }
 
 function logic(){
+    if(input_mouse['down']){
+        launch();
+    }
+
     for(var firework in fireworks){
         fireworks[firework]['x'] += fireworks[firework]['dx'];
         fireworks[firework]['y'] += fireworks[firework]['dy'];
@@ -50,8 +54,8 @@ function logic(){
                       'dy': Math.random() * 3 - 1.5,
                       'x': fireworks[firework]['x'],
                       'timer': random_integer({
-                        'max': 99,
-                      }) + 42,
+                        'max': 90,
+                      }) + 40,
                       'y': fireworks[firework]['y'],
                     });
                 }while(loop_counter--);
@@ -81,11 +85,6 @@ window.onload = function(e){
           'todo': launch,
         },
       },
-      'mousebinds': {
-        'mousedown': {
-          'todo': launch,
-        },
-      },
+      'mousebinds': {},
     });
-    launch();
 };
