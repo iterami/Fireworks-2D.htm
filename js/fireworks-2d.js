@@ -17,11 +17,11 @@ function launch(firework){
     firework['children'] = firework['children'] !== void 0
       ? firework['children']
       : 10;
-    firework['color'] = firework['color'] || '#' + random_hex();
+    firework['color'] = firework['color'] || '#' + core_random_hex();
     firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
-    firework['dy'] = firework['dy'] || -(canvas_height / 200) - Math.random() * 2;
+    firework['dy'] = firework['dy'] || -Math.random() * 2 - canvas_height / 200;
     firework['height'] = firework['height'] || 4;
-    firework['timer'] = firework['timer'] || random_integer({
+    firework['timer'] = firework['timer'] || core_random_integer({
       'max': 200,
     }) + 100;
     firework['width'] = firework['width'] || 4;
@@ -53,7 +53,7 @@ function logic(){
                       'dx': Math.random() * 3 - 1.5,
                       'dy': Math.random() * 3 - 1.5,
                       'x': fireworks[firework]['x'],
-                      'timer': random_integer({
+                      'timer': core_random_integer({
                         'max': 90,
                       }) + 40,
                       'y': fireworks[firework]['y'],
