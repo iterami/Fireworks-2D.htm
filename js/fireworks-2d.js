@@ -25,14 +25,14 @@ function launch(firework){
       'max': 200,
     }) + 100;
     firework['width'] = firework['width'] || 4;
-    firework['x'] = firework['x'] || input_mouse['x'];
+    firework['x'] = firework['x'] || core_input_mouse['x'];
     firework['y'] = firework['y'] || canvas_height;
 
     fireworks.push(firework);
 }
 
 function logic(){
-    if(input_mouse['down']){
+    if(core_input_mouse['down']){
         launch();
     }
 
@@ -73,7 +73,7 @@ var fireworks = [];
 
 window.onload = function(e){
     canvas_init();
-    input_init({
+    core_input_init({
       'keybinds': {
         27: {
           'solo': true,
