@@ -69,11 +69,9 @@ function logic(){
     }
 }
 
-var fireworks = [];
-
-window.onload = function(e){
+function repo_init(){
     canvas_init();
-    core_input_init({
+    core_input_binds_add({
       'keybinds': {
         27: {
           'solo': true,
@@ -87,4 +85,6 @@ window.onload = function(e){
       },
       'mousebinds': {},
     });
-};
+}
+
+var fireworks = [];
