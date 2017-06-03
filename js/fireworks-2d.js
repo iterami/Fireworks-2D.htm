@@ -25,14 +25,14 @@ function launch(firework){
       'max': 200,
     }) + 100;
     firework['width'] = firework['width'] || 4;
-    firework['x'] = firework['x'] || core_input_mouse['x'];
+    firework['x'] = firework['x'] || core_mouse['x'];
     firework['y'] = firework['y'] || canvas_height;
 
     fireworks.push(firework);
 }
 
 function logic(){
-    if(core_input_mouse['down']){
+    if(core_mouse['down']){
         launch();
     }
 
@@ -70,8 +70,7 @@ function logic(){
 }
 
 function repo_init(){
-    canvas_init();
-    core_input_binds_add({
+    core_events_bind({
       'keybinds': {
         27: {
           'solo': true,
@@ -85,6 +84,7 @@ function repo_init(){
       },
       'mousebinds': {},
     });
+    canvas_init();
 }
 
 var fireworks = [];
