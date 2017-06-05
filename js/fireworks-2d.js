@@ -69,15 +69,13 @@ function logic(){
     }
 }
 
+function repo_escape(){
+    fireworks.length = 0;
+}
+
 function repo_init(){
     core_events_bind({
       'keybinds': {
-        27: {
-          'solo': true,
-          'todo': function(){
-              fireworks.length = 0;
-          },
-        },
         'all': {
           'todo': launch,
         },
