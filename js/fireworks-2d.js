@@ -74,13 +74,15 @@ function repo_escape(){
 }
 
 function repo_init(){
+    core_repo_init({
+      'title': 'Fireworks-2D.htm',
+    });
     core_events_bind({
       'keybinds': {
         'all': {
           'todo': launch,
         },
       },
-      'mousebinds': {},
     });
     canvas_init();
 }
