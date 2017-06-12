@@ -69,10 +69,6 @@ function logic(){
     }
 }
 
-function repo_escape(){
-    fireworks.length = 0;
-}
-
 function repo_init(){
     core_repo_init({
       'keybinds': {
