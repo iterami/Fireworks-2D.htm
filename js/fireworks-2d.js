@@ -1,13 +1,13 @@
 'use strict';
 
 function draw_logic(){
-    for(var firework in fireworks){
-        canvas_buffer.fillStyle = fireworks[firework]['color'];
+    for(var entity in core_entities){
+        canvas_buffer.fillStyle = core_entities[entity]['color'];
         canvas_buffer.fillRect(
-          fireworks[firework]['x'],
-          fireworks[firework]['y'],
-          fireworks[firework]['width'],
-          fireworks[firework]['height']
+          core_entities[entity]['x'],
+          core_entities[entity]['y'],
+          core_entities[entity]['width'],
+          core_entities[entity]['height']
         );
     }
 }
@@ -28,7 +28,9 @@ function launch(firework){
     firework['x'] = firework['x'] || core_mouse['x'];
     firework['y'] = firework['y'] || canvas_height;
 
-    fireworks.push(firework);
+    core_entity_create({
+      'properties': firework,
+    });
 }
 
 function logic(){
@@ -36,35 +38,36 @@ function logic(){
         launch();
     }
 
-    for(var firework in fireworks){
-        fireworks[firework]['x'] += fireworks[firework]['dx'];
-        fireworks[firework]['y'] += fireworks[firework]['dy'];
+    for(var entity in core_entities){
+        core_entities[entity]['x'] += core_entities[entity]['dx'];
+        core_entities[entity]['y'] += core_entities[entity]['dy'];
 
-        fireworks[firework]['dy'] += .02;
-        fireworks[firework]['dx'] *= .99;
+        core_entities[entity]['dy'] += .02;
+        core_entities[entity]['dx'] *= .99;
 
-        fireworks[firework]['timer'] -= 1;
-        if(fireworks[firework]['timer'] <= 0){
-            if(fireworks[firework]['children'] > 0){
-                var loop_counter = fireworks[firework]['children'] - 1;
+        core_entities[entity]['timer'] -= 1;
+        if(core_entities[entity]['timer'] <= 0){
+            if(core_entities[entity]['children'] > 0){
+                var loop_counter = core_entities[entity]['children'] - 1;
                 do{
                     launch({
                       'children': 0,
                       'dx': Math.random() * 3 - 1.5,
                       'dy': Math.random() * 3 - 1.5,
-                      'x': fireworks[firework]['x'],
+                      'x': core_entities[entity]['x'],
                       'timer': core_random_integer({
                         'max': 90,
                       }) + 40,
-                      'y': fireworks[firework]['y'],
+                      'y': core_entities[entity]['y'],
                     });
                 }while(loop_counter--);
             }
 
-            fireworks.splice(
-              firework,
-              1
-            );
+            core_entity_remove({
+              'entities': [
+                entity,
+              ],
+            });
         }
     }
 }
@@ -73,12 +76,12 @@ function repo_init(){
     core_repo_init({
       'keybinds': {
         'all': {
-          'todo': launch,
+          'todo': function(){
+              launch();
+          },
         },
       },
       'title': 'Fireworks-2D.htm',
     });
     canvas_init();
 }
-
-var fireworks = [];
