@@ -12,24 +12,18 @@ function draw_logic(){
     }
 }
 
-function launch(firework){
-    var firework = firework || {};
-    firework['children'] = firework['children'] !== void 0
-      ? firework['children']
-      : 10;
-    firework['color'] = firework['color'] || '#' + core_random_hex();
-    firework['dx'] = firework['dx'] || Math.random() * 4 - 2;
-    firework['dy'] = firework['dy'] || -Math.random() * 2 - canvas_height / 200;
-    firework['height'] = firework['height'] || 4;
-    firework['timer'] = firework['timer'] || core_random_integer({
-      'max': 200,
-    }) + 100;
-    firework['width'] = firework['width'] || 4;
-    firework['x'] = firework['x'] || core_mouse['x'];
-    firework['y'] = firework['y'] || canvas_height;
-
+function launch(){
     core_entity_create({
-      'properties': firework,
+      'properties': {
+        'color': '#' + core_random_hex(),
+        'dx': Math.random() * 4 - 2,
+        'dy': -Math.random() * 2 - canvas_height / 200,
+        'timer': core_random_integer({
+          'max': 200,
+        }) + 100,
+        'x': core_mouse['x'],
+        'y': canvas_height,
+      },
     });
 }
 
@@ -50,15 +44,18 @@ function logic(){
             if(core_entities[entity]['children'] > 0){
                 var loop_counter = core_entities[entity]['children'] - 1;
                 do{
-                    launch({
-                      'children': 0,
-                      'dx': Math.random() * 3 - 1.5,
-                      'dy': Math.random() * 3 - 1.5,
-                      'timer': core_random_integer({
-                        'max': 90,
-                      }) + 40,
-                      'x': core_entities[entity]['x'],
-                      'y': core_entities[entity]['y'],
+                    core_entity_create({
+                      'properties': {
+                        'children': 0,
+                        'color': '#' + core_random_hex(),
+                        'dx': Math.random() * 3 - 1.5,
+                        'dy': Math.random() * 3 - 1.5,
+                        'timer': core_random_integer({
+                          'max': 90,
+                        }) + 40,
+                        'x': core_entities[entity]['x'],
+                        'y': core_entities[entity]['y'],
+                      },
                     });
                 }while(loop_counter--);
             }
@@ -84,4 +81,14 @@ function repo_init(){
       'title': 'Fireworks-2D.htm',
     });
     canvas_init();
+
+    core_entity_set({
+      'default': true,
+      'properties': {
+        'children': 10,
+        'height': 4,
+        'width': 4,
+      },
+      'type': '_fireworks',
+    });
 }
