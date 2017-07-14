@@ -54,10 +54,10 @@ function logic(){
                       'children': 0,
                       'dx': Math.random() * 3 - 1.5,
                       'dy': Math.random() * 3 - 1.5,
-                      'x': core_entities[entity]['x'],
                       'timer': core_random_integer({
                         'max': 90,
                       }) + 40,
+                      'x': core_entities[entity]['x'],
                       'y': core_entities[entity]['y'],
                     });
                 }while(loop_counter--);
