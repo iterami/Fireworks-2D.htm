@@ -73,9 +73,7 @@ function repo_init(){
     core_repo_init({
       'keybinds': {
         'all': {
-          'todo': function(){
-              launch();
-          },
+          'todo': launch,
         },
       },
       'title': 'Fireworks-2D.htm',
