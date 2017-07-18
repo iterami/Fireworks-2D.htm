@@ -12,10 +12,11 @@ function draw_logic(){
     }
 }
 
-function launch(){
-    core_entity_create({
-      'properties': {
-        'color': '#' + core_random_hex(),
+function launch(args){
+    args = core_args({
+      'args': args,
+      'defaults': {
+        'children': 10,
         'dx': Math.random() * 4 - 2,
         'dy': -Math.random() * 2 - canvas_height / 200,
         'timer': core_random_integer({
@@ -23,6 +24,18 @@ function launch(){
         }) + 100,
         'x': core_mouse['x'],
         'y': canvas_height,
+      },
+    });
+
+    core_entity_create({
+      'properties': {
+        'children': args['children'],
+        'color': '#' + core_random_hex(),
+        'dx': args['dx'],
+        'dy': args['dy'],
+        'timer': args['timer'],
+        'x': args['x'],
+        'y': args['y'],
       },
     });
 }
@@ -44,18 +57,15 @@ function logic(){
             if(core_entities[entity]['children'] > 0){
                 var loop_counter = core_entities[entity]['children'] - 1;
                 do{
-                    core_entity_create({
-                      'properties': {
-                        'children': 0,
-                        'color': '#' + core_random_hex(),
-                        'dx': Math.random() * 3 - 1.5,
-                        'dy': Math.random() * 3 - 1.5,
-                        'timer': core_random_integer({
-                          'max': 90,
-                        }) + 40,
-                        'x': core_entities[entity]['x'],
-                        'y': core_entities[entity]['y'],
-                      },
+                    launch({
+                      'children': 0,
+                      'dx': Math.random() * 3 - 1.5,
+                      'dy': Math.random() * 3 - 1.5,
+                      'timer': core_random_integer({
+                        'max': 90,
+                      }) + 40,
+                      'x': core_entities[entity]['x'],
+                      'y': core_entities[entity]['y'],
                     });
                 }while(loop_counter--);
             }
@@ -73,7 +83,9 @@ function repo_init(){
     core_repo_init({
       'keybinds': {
         'all': {
-          'todo': launch,
+          'todo': function(){
+              launch();
+          },
         },
       },
       'title': 'Fireworks-2D.htm',
