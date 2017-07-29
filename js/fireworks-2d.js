@@ -81,6 +81,16 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
+      'entities': {
+        'fireworks': {
+          'default': true,
+          'properties': {
+            'children': 10,
+            'height': 4,
+            'width': 4,
+          },
+        },
+      },
       'keybinds': {
         'all': {
           'todo': function(){
@@ -91,14 +101,4 @@ function repo_init(){
       'title': 'Fireworks-2D.htm',
     });
     canvas_init();
-
-    core_entity_set({
-      'default': true,
-      'properties': {
-        'children': 10,
-        'height': 4,
-        'width': 4,
-      },
-      'type': '_fireworks',
-    });
 }
