@@ -37,6 +37,9 @@ function launch(args){
         'x': args['x'],
         'y': args['y'],
       },
+      'types': [
+        'fireworks',
+      ],
     });
 }
 
