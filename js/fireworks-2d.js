@@ -27,12 +27,12 @@ function launch(args){
       'defaults': {
         'children': 10,
         'dx': Math.random() * 4 - 2,
-        'dy': -Math.random() * 2 - canvas_height / 200,
+        'dy': -Math.random() * 2 - canvas_properties['height'] / 200,
         'timer': core_random_integer({
           'max': 200,
         }) + 100,
         'x': core_mouse['x'],
-        'y': canvas_height,
+        'y': canvas_properties['height'],
       },
     });
 
