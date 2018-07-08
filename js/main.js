@@ -40,7 +40,7 @@ function logic(){
           core_entities[entity]['timer'] -= 1;
           if(core_entities[entity]['timer'] <= 0){
               if(core_entities[entity]['children'] > 0){
-                  var loop_counter = core_entities[entity]['children'] - 1;
+                  let loop_counter = core_entities[entity]['children'] - 1;
                   do{
                       launch({
                         'children': 0,
