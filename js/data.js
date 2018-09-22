@@ -16,7 +16,6 @@ function launch(args){
     });
 
     core_entity_create({
-      'id': id_count,
       'properties': {
         'children': args['children'],
         'color': '#' + core_random_hex(),
@@ -30,5 +29,4 @@ function launch(args){
         'firework',
       ],
     });
-    id_count++;
 }

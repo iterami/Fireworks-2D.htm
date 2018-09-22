@@ -77,9 +77,6 @@ function repo_init(){
           },
         },
       },
-      'globals': {
-        'id_count': 0,
-      },
       'keybinds': {
         'all': {
           'todo': function(){
