@@ -22,7 +22,7 @@ function draw_logic(){
 }
 
 function logic(){
-    if(core_mouse['down']){
+    if(core_mouse['down-0']){
         launch();
     }
 
