@@ -15,7 +15,7 @@ function launch(args){
       },
     });
 
-    core_entity_create({
+    entity_create({
       'properties': {
         'children': args['children'],
         'color': '#' + core_random_hex(),

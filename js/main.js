@@ -1,21 +1,21 @@
 'use strict';
 
 function draw_logic(){
-    core_group_modify({
+    entity_group_modify({
       'groups': [
         'firework',
       ],
       'todo': function(entity){
           canvas_setproperties({
             'properties': {
-              'fillStyle': core_entities[entity]['color'],
+              'fillStyle': entity_entities[entity]['color'],
             },
           });
           canvas_buffer.fillRect(
-            core_entities[entity]['x'],
-            core_entities[entity]['y'],
-            core_entities[entity]['width'],
-            core_entities[entity]['height']
+            entity_entities[entity]['x'],
+            entity_entities[entity]['y'],
+            entity_entities[entity]['width'],
+            entity_entities[entity]['height']
           );
       },
     });
@@ -26,21 +26,21 @@ function logic(){
         launch();
     }
 
-    core_group_modify({
+    entity_group_modify({
       'groups': [
         'firework',
       ],
       'todo': function(entity){
-          core_entities[entity]['x'] += core_entities[entity]['dx'];
-          core_entities[entity]['y'] += core_entities[entity]['dy'];
+          entity_entities[entity]['x'] += entity_entities[entity]['dx'];
+          entity_entities[entity]['y'] += entity_entities[entity]['dy'];
 
-          core_entities[entity]['dy'] += .02;
-          core_entities[entity]['dx'] *= .99;
+          entity_entities[entity]['dy'] += .02;
+          entity_entities[entity]['dx'] *= .99;
 
-          core_entities[entity]['timer'] -= 1;
-          if(core_entities[entity]['timer'] <= 0){
-              if(core_entities[entity]['children'] > 0){
-                  let loop_counter = core_entities[entity]['children'] - 1;
+          entity_entities[entity]['timer'] -= 1;
+          if(entity_entities[entity]['timer'] <= 0){
+              if(entity_entities[entity]['children'] > 0){
+                  let loop_counter = entity_entities[entity]['children'] - 1;
                   do{
                       launch({
                         'children': 0,
@@ -49,13 +49,13 @@ function logic(){
                         'timer': core_random_integer({
                           'max': 90,
                         }) + 40,
-                        'x': core_entities[entity]['x'],
-                        'y': core_entities[entity]['y'],
+                        'x': entity_entities[entity]['x'],
+                        'y': entity_entities[entity]['y'],
                       });
                   }while(loop_counter--);
               }
 
-              core_entity_remove({
+              entity_remove({
                 'entities': [
                   entity,
                 ],
@@ -67,16 +67,6 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'entities': {
-        'firework': {
-          'default': true,
-          'properties': {
-            'children': 10,
-            'height': 4,
-            'width': 4,
-          },
-        },
-      },
       'keybinds': {
         'all': {
           'todo': function(){
@@ -85,6 +75,15 @@ function repo_init(){
         },
       },
       'title': 'Fireworks-2D.htm',
+    });
+    entity_set({
+      'default': true,
+      'properties': {
+        'children': 10,
+        'height': 4,
+        'width': 4,
+      },
+      'type': 'firework',
     });
     canvas_init();
 }
