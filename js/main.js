@@ -85,5 +85,7 @@ function repo_init(){
       },
       'type': 'firework',
     });
-    canvas_init();
+    canvas_init({
+      'cursor': 'pointer',
+    });
 }
