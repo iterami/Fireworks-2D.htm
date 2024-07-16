@@ -32,6 +32,32 @@ function launch(args){
 }
 
 function repo_drawlogic(){
+    canvas_draw_path({
+      'properties': {
+        'fillStyle': canvas_gradient({
+          'y': canvas_properties['height'],
+          'stops': [
+            {
+              'color': '#008',
+            },
+            {
+              'color': '#000',
+              'offset': 1,
+            },
+          ],
+        }),
+      },
+      'vertices': [
+        [
+          'rect',
+          0,
+          0,
+          canvas_properties['width'],
+          canvas_properties['height'],
+        ],
+      ],
+    });
+
     entity_group_modify({
       'groups': [
         'firework',
