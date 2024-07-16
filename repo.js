@@ -35,7 +35,12 @@ function repo_drawlogic(){
     canvas_draw_path({
       'properties': {
         'fillStyle': canvas_gradient({
-          'y': canvas_properties['height'],
+          'args': [
+            0,
+            canvas_properties['height'],
+            0,
+            0,
+          ],
           'stops': [
             {
               'color': '#008',
