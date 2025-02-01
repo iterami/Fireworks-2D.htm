@@ -82,7 +82,8 @@ function repo_drawlogic(){
 }
 
 function repo_logic(){
-    if(core_mouse['down-0']){
+    if(core_mouse['down-0']
+      || core_keys['KeyF']?.['state']){
         launch();
     }
 
@@ -128,11 +129,7 @@ function repo_logic(){
 function repo_init(){
     core_repo_init({
       'keybinds': {
-        'all': {
-          'todo': function(){
-              launch();
-          },
-        },
+        'KeyF': {},
       },
       'title': 'Fireworks-2D.htm',
     });
