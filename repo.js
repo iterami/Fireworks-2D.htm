@@ -21,6 +21,7 @@ function launch(args){
         'color': '#' + core_random_hex(),
         'dx': args['dx'],
         'dy': args['dy'],
+        'id': entity_id_count,
         'timer': args['timer'],
         'x': args['x'],
         'y': args['y'],
@@ -69,13 +70,13 @@ function repo_drawlogic(){
       ],
       'todo': function(entity){
           canvas_setproperties({
-            'fillStyle': entity_entities[entity]['color'],
+            'fillStyle': entity['color'],
           });
           canvas.fillRect(
-            entity_entities[entity]['x'],
-            entity_entities[entity]['y'],
-            entity_entities[entity]['width'],
-            entity_entities[entity]['height']
+            entity['x'],
+            entity['y'],
+            entity['width'],
+            entity['height']
           );
       },
     });
@@ -92,16 +93,16 @@ function repo_logic(){
         'firework',
       ],
       'todo': function(entity){
-          entity_entities[entity]['x'] += entity_entities[entity]['dx'];
-          entity_entities[entity]['y'] += entity_entities[entity]['dy'];
+          entity['x'] += entity['dx'];
+          entity['y'] += entity['dy'];
 
-          entity_entities[entity]['dy'] += .02;
-          entity_entities[entity]['dx'] *= .99;
+          entity['dy'] += .02;
+          entity['dx'] *= .99;
 
-          entity_entities[entity]['timer'] -= 1;
-          if(entity_entities[entity]['timer'] <= 0){
-              if(entity_entities[entity]['children'] > 0){
-                  let loop_counter = entity_entities[entity]['children'] - 1;
+          entity['timer'] -= 1;
+          if(entity['timer'] <= 0){
+              if(entity['children'] > 0){
+                  let loop_counter = entity['children'] - 1;
                   do{
                       launch({
                         'children': 0,
@@ -110,15 +111,15 @@ function repo_logic(){
                         'timer': core_random_integer({
                           'max': 90,
                         }) + 40,
-                        'x': entity_entities[entity]['x'],
-                        'y': entity_entities[entity]['y'],
+                        'x': entity['x'],
+                        'y': entity['y'],
                       });
                   }while(loop_counter--);
               }
 
               entity_remove({
                 'entities': [
-                  entity,
+                  entity['id'],
                 ],
               });
           }
@@ -131,6 +132,7 @@ function repo_init(){
       'keybinds': {
         'KeyF': {},
       },
+      'mousebinds': {},
       'title': 'Fireworks-2D.htm',
     });
     entity_set({
