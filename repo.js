@@ -5,7 +5,7 @@ function launch(args){
       'args': args,
       'defaults': {
         'children': 10,
-        'dx': Math.random() * 4 - 2,
+        'dx': Math.random() * 2 - 1,
         'dy': -Math.random() * 2 - canvas_properties['height'] / 200,
         'timer': core_random_integer({
           'max': 200,
