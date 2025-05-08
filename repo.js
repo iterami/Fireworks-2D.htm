@@ -10,7 +10,7 @@ function launch(args){
         'timer': core_random_integer({
           'max': 200,
         }) + 100,
-        'x': core_mouse['x'],
+        'x': core_pointer['x'],
         'y': canvas_properties['height'],
       },
     });
@@ -83,7 +83,7 @@ function repo_drawlogic(){
 }
 
 function repo_logic(){
-    if(core_mouse['down-0']
+    if(core_pointer['down-0']
       || core_keys['KeyF']?.['state']){
         launch();
     }
@@ -132,7 +132,7 @@ function repo_init(){
       'keybinds': {
         'KeyF': {},
       },
-      'mousebinds': {},
+      'pointerbinds': {},
       'title': 'Fireworks-2D.htm',
     });
     entity_set({
