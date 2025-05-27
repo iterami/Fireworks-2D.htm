@@ -82,6 +82,28 @@ function repo_drawlogic(){
     });
 }
 
+function repo_init(){
+    core_repo_init({
+      'keybinds': {
+        'KeyF': {},
+      },
+      'pointerbinds': {},
+      'title': 'Fireworks-2D.htm',
+    });
+    entity_set({
+      'default': true,
+      'properties': {
+        'children': 10,
+        'height': 4,
+        'width': 4,
+      },
+      'type': 'firework',
+    });
+    canvas_init({
+      'cursor': 'pointer',
+    });
+}
+
 function repo_logic(){
     if(core_pointer['down-0']
       || core_keys['KeyF']?.['state']){
@@ -124,27 +146,5 @@ function repo_logic(){
               });
           }
       },
-    });
-}
-
-function repo_init(){
-    core_repo_init({
-      'keybinds': {
-        'KeyF': {},
-      },
-      'pointerbinds': {},
-      'title': 'Fireworks-2D.htm',
-    });
-    entity_set({
-      'default': true,
-      'properties': {
-        'children': 10,
-        'height': 4,
-        'width': 4,
-      },
-      'type': 'firework',
-    });
-    canvas_init({
-      'cursor': 'pointer',
     });
 }
