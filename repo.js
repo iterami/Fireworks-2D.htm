@@ -7,9 +7,7 @@ function launch(args){
         'children': 10,
         'dx': Math.random() * 2 - 1,
         'dy': -Math.random() * 2 - canvas_properties['height'] / 200,
-        'timer': core_random_integer({
-          'max': 200,
-        }) + 100,
+        'timer': core_random_integer(200) + 100,
         'x': core_pointer['x'],
         'y': canvas_properties['height'],
       },
@@ -130,9 +128,7 @@ function repo_logic(){
                         'children': 0,
                         'dx': Math.random() * 3 - 1.5,
                         'dy': Math.random() * 3 - 1.5,
-                        'timer': core_random_integer({
-                          'max': 90,
-                        }) + 40,
+                        'timer': core_random_integer(90) + 40,
                         'x': entity['x'],
                         'y': entity['y'],
                       });
