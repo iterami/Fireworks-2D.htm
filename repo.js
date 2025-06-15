@@ -6,23 +6,23 @@ function launch(args){
       'defaults': {
         'children': 10,
         'dx': Math.random() * 2 - 1,
-        'dy': -Math.random() * 2 - canvas_properties['height'] / 200,
+        'dy': -Math.random() * 2 - canvas_properties.height / 200,
         'timer': core_random_integer(200) + 100,
-        'x': core_pointer['x'],
-        'y': canvas_properties['height'],
+        'x': core_pointer.x,
+        'y': canvas_properties.height,
       },
     });
 
     entity_create({
       'properties': {
-        'children': args['children'],
+        'children': args.children,
         'color': '#' + core_random_hex(),
-        'dx': args['dx'],
-        'dy': args['dy'],
+        'dx': args.dx,
+        'dy': args.dy,
         'id': entity_id_count,
-        'timer': args['timer'],
-        'x': args['x'],
-        'y': args['y'],
+        'timer': args.timer,
+        'x': args.x,
+        'y': args.y,
       },
       'types': [
         'firework',
@@ -36,7 +36,7 @@ function repo_drawlogic(){
         'fillStyle': canvas_gradient({
           'args': [
             0,
-            canvas_properties['height'],
+            canvas_properties.height,
             0,
             0,
           ],
@@ -56,8 +56,8 @@ function repo_drawlogic(){
           'rect',
           0,
           0,
-          canvas_properties['width'],
-          canvas_properties['height'],
+          canvas_properties.width,
+          canvas_properties.height,
         ],
       ],
     });
@@ -68,13 +68,13 @@ function repo_drawlogic(){
       ],
       'todo': function(entity){
           canvas_setproperties({
-            'fillStyle': entity['color'],
+            'fillStyle': entity.color,
           });
           canvas.fillRect(
-            entity['x'],
-            entity['y'],
-            entity['width'],
-            entity['height']
+            entity.x,
+            entity.y,
+            entity.width,
+            entity.height
           );
       },
     });
@@ -104,7 +104,7 @@ function repo_init(){
 
 function repo_logic(){
     if(core_pointer['down-0']
-      || core_keys['KeyF']?.['state']){
+      || core_keys.KeyF.state){
         launch();
     }
 
@@ -113,31 +113,31 @@ function repo_logic(){
         'firework',
       ],
       'todo': function(entity){
-          entity['x'] += entity['dx'];
-          entity['y'] += entity['dy'];
+          entity.x += entity.dx;
+          entity.y += entity.dy;
 
-          entity['dy'] += .02;
-          entity['dx'] *= .99;
+          entity.dy += .02;
+          entity.dx *= .99;
 
-          entity['timer'] -= 1;
-          if(entity['timer'] <= 0){
-              if(entity['children'] > 0){
-                  let loop_counter = entity['children'] - 1;
+          entity.timer -= 1;
+          if(entity.timer <= 0){
+              if(entity.children > 0){
+                  let loop_counter = entity.children - 1;
                   do{
                       launch({
                         'children': 0,
                         'dx': Math.random() * 3 - 1.5,
                         'dy': Math.random() * 3 - 1.5,
                         'timer': core_random_integer(90) + 40,
-                        'x': entity['x'],
-                        'y': entity['y'],
+                        'x': entity.x,
+                        'y': entity.y,
                       });
                   }while(loop_counter--);
               }
 
               entity_remove({
                 'entities': [
-                  entity['id'],
+                  entity.id,
                 ],
               });
           }
