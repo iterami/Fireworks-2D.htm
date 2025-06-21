@@ -103,7 +103,7 @@ function repo_init(){
 }
 
 function repo_logic(){
-    if(core_pointer['down-0']
+    if(core_pointer.down_0
       || core_keys.KeyF.state){
         launch();
     }
