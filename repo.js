@@ -1,5 +1,17 @@
 'use strict';
 
+function draw_firework(entity){
+    canvas_setproperties({
+      'fillStyle': entity.color,
+    });
+    canvas.fillRect(
+      entity.x,
+      entity.y,
+      entity.width,
+      entity.height
+    );
+}
+
 function launch(args){
     args = core_args({
       'args': args,
@@ -28,6 +40,37 @@ function launch(args){
         'firework',
       ],
     });
+}
+
+function move_firework(entity){
+    entity.x += entity.dx;
+    entity.y += entity.dy;
+
+    entity.dy += .02;
+    entity.dx *= .99;
+
+    entity.timer -= 1;
+    if(entity.timer <= 0){
+        if(entity.children > 0){
+            let loop_counter = entity.children - 1;
+            do{
+                launch({
+                  'children': 0,
+                  'dx': Math.random() * 3 - 1.5,
+                  'dy': Math.random() * 3 - 1.5,
+                  'timer': core_random_integer(90) + 40,
+                  'x': entity.x,
+                  'y': entity.y,
+                });
+            }while(loop_counter--);
+        }
+
+        entity_remove({
+          'entities': [
+            entity.id,
+          ],
+        });
+    }
 }
 
 function repo_drawlogic(){
@@ -66,17 +109,7 @@ function repo_drawlogic(){
       'groups': [
         'firework',
       ],
-      'todo': function(entity){
-          canvas_setproperties({
-            'fillStyle': entity.color,
-          });
-          canvas.fillRect(
-            entity.x,
-            entity.y,
-            entity.width,
-            entity.height
-          );
-      },
+      'todo': draw_firework,
     });
 }
 
@@ -112,35 +145,6 @@ function repo_logic(){
       'groups': [
         'firework',
       ],
-      'todo': function(entity){
-          entity.x += entity.dx;
-          entity.y += entity.dy;
-
-          entity.dy += .02;
-          entity.dx *= .99;
-
-          entity.timer -= 1;
-          if(entity.timer <= 0){
-              if(entity.children > 0){
-                  let loop_counter = entity.children - 1;
-                  do{
-                      launch({
-                        'children': 0,
-                        'dx': Math.random() * 3 - 1.5,
-                        'dy': Math.random() * 3 - 1.5,
-                        'timer': core_random_integer(90) + 40,
-                        'x': entity.x,
-                        'y': entity.y,
-                      });
-                  }while(loop_counter--);
-              }
-
-              entity_remove({
-                'entities': [
-                  entity.id,
-                ],
-              });
-          }
-      },
+      'todo': move_firework,
     });
 }
