@@ -51,18 +51,15 @@ function move_firework(entity){
 
     entity.timer -= 1;
     if(entity.timer <= 0){
-        if(entity.children > 0){
-            let loop_counter = entity.children - 1;
-            do{
-                launch({
-                  'children': 0,
-                  'dx': Math.random() * 3 - 1.5,
-                  'dy': Math.random() * 3 - 1.5,
-                  'timer': core_random_integer(90) + 40,
-                  'x': entity.x,
-                  'y': entity.y,
-                });
-            }while(loop_counter--);
+        for(let i = 0; i < entity.children; i++){
+            launch({
+              'children': 0,
+              'dx': Math.random() * 3 - 1.5,
+              'dy': Math.random() * 3 - 1.5,
+              'timer': core_random_integer(90) + 40,
+              'x': entity.x,
+              'y': entity.y,
+            });
         }
 
         entity_remove({
