@@ -12,29 +12,24 @@ function draw_firework(entity){
     );
 }
 
-function launch(args){
-    args = core_args({
-      'args': args,
-      'defaults': {
-        'children': 10,
-        'dx': Math.random() * 2 - 1,
-        'dy': -Math.random() * 2 - canvas_properties.height / 200,
-        'timer': core_random_integer(200) + 100,
-        'x': core_pointer.x,
-        'y': canvas_properties.height,
-      },
-    });
-
+function launch({
+  children = 10,
+  dx = Math.random() * 2 - 1,
+  dy = -Math.random() * 2 - canvas_properties.height / 200,
+  timer = core_random_integer(200) + 100,
+  x = core_pointer.x,
+  y = canvas_properties.height,
+} = {}){
     entity_create({
       'properties': {
-        'children': args.children,
+        'children': children,
         'color': '#' + core_random_hex(),
-        'dx': args.dx,
-        'dy': args.dy,
+        'dx': dx,
+        'dy': dy,
         'id': entity_id_count,
-        'timer': args.timer,
-        'x': args.x,
-        'y': args.y,
+        'timer': timer,
+        'x': x,
+        'y': y,
       },
       'types': [
         'firework',
@@ -119,7 +114,7 @@ function repo_init(){
       'title': 'Fireworks-2D.htm',
     });
     entity_set({
-      'default': true,
+      'defaults': true,
       'properties': {
         'children': 10,
         'height': 4,
